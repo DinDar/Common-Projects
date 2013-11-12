@@ -8,7 +8,8 @@ import com.mysql.jdbc.Connection;
 public class Main {
 	private static final String URL = "jdbc:mysql://127.0.0.1:3306/test";
 	private static final String NAME = "root";
-	private static final String PASSWORD = "jumpjet123";
+	// TODO add password
+	private static final String PASSWORD = "";
 	
 	public static void main(String[] args){
 		try {

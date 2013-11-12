@@ -3,24 +3,31 @@ package by.zti;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 import com.mysql.jdbc.Connection;
 
 public class Main {
-	private static final String URL = "jdbc:mysql://127.0.0.1:3306/test";
-	private static final String NAME = "root";
+	private static String url = "jdbc:mysql://127.0.0.1:3306/test";
+	private static String name = "root";
 	// TODO add password
-	private static final String PASSWORD = "";
+	private static String password = "";
+	private static boolean isConnected = false;
 	
 	public static void main(String[] args){
-		try {
-			//Class.forName("Driver");
-			System.out.println("Драйвер подключен");
-			@SuppressWarnings("unused")
-			Connection connection = (Connection) DriverManager.getConnection(URL, NAME, PASSWORD);
-			System.out.println("Соединение установлено");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		while(!isConnected)
+			try {
+				//Class.forName("Driver");
+				System.out.println("Драйвер подключен\n");
+				@SuppressWarnings("unused")
+				Connection connection = (Connection) DriverManager.getConnection(url, name, password);
+				System.out.println("Соединение установлено\n---------------------");
+				isConnected = true;
+			} catch (SQLException e) {
+				System.out.println("Соедениться не удалось");
+				url = JOptionPane.showInputDialog("Введите URL базы");
+				name = JOptionPane.showInputDialog("Введите имя");
+				password = JOptionPane.showInputDialog("Введите пароль");
+			}
 	}
 }
